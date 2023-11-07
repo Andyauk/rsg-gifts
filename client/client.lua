@@ -1,4 +1,4 @@
-local QRCore = exports['qr-core']:GetCoreObject()
+local RSGCore = exports['rsg-core']:GetCoreObject()
 local spawned = false
 local busy = false
 local cooldownSecondsRemaining = 0
@@ -8,7 +8,7 @@ local cooldownSecondsRemaining = 0
 -- prompt and blip
 Citizen.CreateThread(function()
     for xmas,v in pairs(Config.XmasTrees) do
-        exports['qr-core']:createPrompt(v.name, v.coords, QRCore.Shared.Keybinds['J'], 'Check ' ..v.lable, {
+        exports['rsg-core']:createPrompt(v.name, v.coords, RSGCore.Shared.Keybinds['J'], 'Check ' ..v.lable, {
             type = 'client',
             event = 'rsg-gifts:client:checkundertree',
             args = { v.name },
@@ -57,7 +57,7 @@ AddEventHandler('rsg-gifts:client:checkundertree', function(treename)
         cooldownTimer()
         busy = false
     else
-        QRCore.Functions.Notify('santa\'s not been yet!', 'error')
+        RSGCore.Functions.Notify('santa\'s not been yet!', 'error')
     end
 end)
 
@@ -66,9 +66,9 @@ end)
 -- open present
 RegisterNetEvent('rsg-gifts:client:openpresent')
 AddEventHandler('rsg-gifts:client:openpresent', function(item)
-    local hasItem = QRCore.Functions.HasItem(item, 1)
+    local hasItem = RSGCore.Functions.HasItem(item, 1)
     if hasItem then
-        QRCore.Functions.Progressbar('openpresent', 'Opening Present', Config.OpenTime, false, true, {
+        RSGCore.Functions.Progressbar('openpresent', 'Opening Present', Config.OpenTime, false, true, {
             disableMovement = true,
             disableCarMovement = false,
             disableMouse = false,
@@ -77,7 +77,7 @@ AddEventHandler('rsg-gifts:client:openpresent', function(item)
             TriggerServerEvent('rsg-gifts:server:presentreward', item)
         end)
     else
-        QRCore.Functions.Notify('you don\'t that item', 'error')
+        RSGCore.Functions.Notify('you don\'t that item', 'error')
     end
 end)
 
