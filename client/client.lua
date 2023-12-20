@@ -57,7 +57,7 @@ AddEventHandler('rsg-gifts:client:checkundertree', function(treename)
         cooldownTimer()
         busy = false
     else
-        RSGCore.Functions.Notify('santa\'s not been yet!', 'error')
+        lib.notify({ title = '🎅', description = 'santa\'s not been yet!', type = 'error', duration = 5000 })
     end
 end)
 
@@ -77,7 +77,7 @@ AddEventHandler('rsg-gifts:client:openpresent', function(item)
             TriggerServerEvent('rsg-gifts:server:presentreward', item)
         end)
     else
-        RSGCore.Functions.Notify('you don\'t that item', 'error')
+        lib.notify({ title = '🎁', description = 'you don\'t that item', type = 'error', duration = 5000 })
     end
 end)
 
